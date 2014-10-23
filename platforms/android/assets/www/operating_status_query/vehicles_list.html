@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+	<div data-role="page" align="center"
+		style="background: url('../img/bgtemp.png');" id="page">
+		<div data-role="header">
+			<a href="javascript:history.back(-1)" data-rel="back"
+				class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l ui-btn-inline"></a>
+			<h4>车辆状况查询</h4>
+		</div>
+		<div data-role="body" id="body" style="background: white;">
+			<script type="text/javascript">
+				var data;
+				data = '<?xml version="1.0" encoding="GB2312"?>';
+				data = data
+						+ '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">';
+				data = data + '<soap:Body>';
+				data = data + '<getWaitTodo xmlns="http://tempuri.org/">';
+				data = data + '<userSign>' + 'xululu' + '</userSign>';
+				data = data + '<offset>' + "1" + '</offset>';
+				data = data + '<rows>' + "10" + '</rows>';
+				data = data + '</getWaitTodo>';
+				data = data + '</soap:Body>';
+				data = data + '</soap:Envelope>';
+				var xmlhttp = GetXmlHttp();
+
+				var URL = "http://192.168.3.160:8881/services/NodeGWWebService?wsdl";
+
+				xmlhttp.open("POST", URL, false);
+				xmlhttp.setRequestHeader("Content-Type",
+						"text/xml; charset=gb2312");
+				xmlhttp.setRequestHeader("SOAPAction",
+						"http://tempuri.org/getWaitTodo");
+				xmlhttp.send(data);
+
+				if (xmlhttp.readyState == 4) {
+					var xml = parseXml(xmlhttp.responseText);
+				}
+				$("#body")
+						.html(
+								"<ul data-role='listview' data-inset='true'>"
+										+ "<li><a href='#'><h2>Benz</h2><p>正常</p></a></li>"
+										+ "<li><a href='#'><h2>BMW</h2><p>正常</p></a></li>"
+										+ "<li><a href='#'><h2>Porsche</h2><p>正常</p></a></li>"
+										+ "<li><a href='#'><h2>Lamborghini</h2><p>正常</p></a></li></ul>");
+			</script>
+		</div>
+	</div>
+</body>
+</html>
