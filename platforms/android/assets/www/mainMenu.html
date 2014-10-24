@@ -23,8 +23,8 @@
 		<nav class="bar bar-tab">
 			<a class="tab-item" href="#"> <span class="icon icon-home"></span>
 				<span class="tab-label">主页</span>
-			</a> <a class="tab-item active" href="#"> <span class="icon icon-person"></span>
-				<span class="tab-label">个人信息</span>
+			</a> <a class="tab-item active" href="#"> <span
+				class="icon icon-person"></span> <span class="tab-label">个人信息</span>
 			</a> <a class="tab-item" href="#"> <span
 				class="icon icon-star-filled"></span> <span class="tab-label">收藏</span>
 			</a> <a class="tab-item" href="#"> <span class="icon icon-search"></span>
@@ -35,8 +35,13 @@
 		</nav>
 	</div>
 
-	<div class="content">
-
+	<div class="content" style="background: url('img/bgtemp.png');">
+		<script type="text/javascript">
+			document.addEventListener("backbutton", onBackKeyDown, false);
+			function onBackKeyDown() {
+			alert("haha");
+			}
+		</script>
 		<ul class="table-view">
 			<li class="table-view-cell media"><a class="navigate-right"
 				href="inbox.html" data-transition="slide-in"> <span
